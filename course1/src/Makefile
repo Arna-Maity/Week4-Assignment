@@ -100,6 +100,24 @@ system_msp432p401r.i : system_msp432p401r.c system_msp432p401r.d
 system_msp432p401r.o : system_msp432p401r.i system_msp432p401r.d
 	$(CC) -c $(INCLUDES) $(CFLAGS) $(CPPFLAGs) $< -o $@
 
+course1.i : course1.c course1.d
+	$(CC) -E $(INCLUDES) $(CPPFLAGs) $< -o $@
+
+course1.o : course1.i course1.d
+	$(CC) -c $(INCLUDES) $(CFLAGS) $(CPPFLAGs) $< -o $@
+
+stats.i : stats.c stats.d
+	$(CC) -E $(INCLUDES) $(CPPFLAGs) $< -o $@
+
+stats.o : stats.i stats.d
+	$(CC) -c $(INCLUDES) $(CFLAGS) $(CPPFLAGs) $< -o $@
+
+data.i : data.c data.d
+	$(CC) -E $(INCLUDES) $(CPPFLAGs) $< -o $@
+
+data.o : data.i data.d
+	$(CC) -c $(INCLUDES) $(CFLAGS) $(CPPFLAGs) $< -o $@
+
 %.asm : %.o
 	$(OBJDUMP) -S $< > $@
 
