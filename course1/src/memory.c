@@ -20,6 +20,9 @@
  * @date April 1 2017
  *
  */
+#include<stdint.h>  //
+#include<stdio.h>   // for size_t type
+#include<stdlib.h>  // for calloc()
 #include "memory.h"
 
 /***********************************************************
@@ -48,3 +51,43 @@ void clear_all(char * ptr, unsigned int size){
   set_all(ptr, 0, size);
 }
 
+uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length)
+{
+   uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
+   return type;
+}
+
+uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length)
+{
+     uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
+   return type;
+}
+
+uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value)
+{
+     uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
+   return type;
+}
+
+uint8_t * my_memzero(uint8_t * src, size_t length)
+{
+     uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
+   return type;
+}
+
+uint8_t * my_reverse(uint8_t * src, size_t length)
+{
+     uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
+   return type;
+}
+
+int32_t * reserve_words(size_t length)
+{
+       int32_t* type = (int32_t*)calloc(1,sizeof(int32_t));
+   return type;
+}
+
+void free_words(uint32_t * src)
+{
+
+}

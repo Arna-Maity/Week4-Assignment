@@ -26,7 +26,7 @@
 /* Size of the Data Set */
 #define SIZE (40)
 
-void main() {
+/*int main() {
 
   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
                               114, 88,   45,  76, 123,  87,  25,  23,
@@ -36,10 +36,12 @@ void main() {
 
   /* Other Variable Declarations Go Here */
   /* Statistics and Printing Functions Go Here */
-  int len = sizeof(test)/sizeof(test[0]);
+/*  int len = sizeof(test)/sizeof(test[0]);
   print_statistics(test,len);
 
-}
+  return 0;
+
+}*/
 
 void print_statistics(unsigned char* arr, unsigned int len)
 {
@@ -53,10 +55,12 @@ void print_statistics(unsigned char* arr, unsigned int len)
 
 void print_array(unsigned char* arr, unsigned int len)
 {
-    for(char i=0;i<len;i++)
+  #ifdef VERBOSE
+    for(int i=0;i<len;i++)
       printf(" %d",arr[i]);
 
-    printf("\n");  
+    printf("\n");
+  #endif  
 }
 
 int find_median(unsigned char* arr, unsigned int len)
@@ -92,8 +96,8 @@ int find_minimum(unsigned char* arr, unsigned int len)
 void sort_array(unsigned char* arr, unsigned int len)
 {
   char tmp;
-  for(char i=0;i<len;i++)
-    for(char j=0;j<(len-i-1);j++)
+  for(int i=0;i<len;i++)
+    for(int j=0;j<(len-i-1);j++)
       if(arr[j]<arr[j+1])
         {
           tmp = arr[j];

@@ -18,6 +18,7 @@
  */
 
 #include <stdint.h>
+#include <stdlib.h>
 #include "course1.h"
 #include "platform.h"
 #include "memory.h"
