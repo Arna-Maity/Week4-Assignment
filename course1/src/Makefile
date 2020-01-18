@@ -26,7 +26,7 @@ include sources.mk
 # Platform Overrides
 PLATFORM = MSP432
 
-TARGET = c1m2
+TARGET = c1m4
 
 # General compiler and linker flags for both platforms
 CFLAGS = -Wall -Werror -g -O0 -std=c99
