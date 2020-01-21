@@ -53,8 +53,16 @@ void clear_all(char * ptr, unsigned int size){
 
 uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length)
 {
-   uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
-   return type;
+   //uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
+   //return type;
+   uint8_t tmp[length];
+   for(int i=0;i<length;i++)
+     *(tmp+i) = *(src+i);
+
+   for(int i=0;i<length;i++)
+     *(dst+i) = *(tmp+i);
+
+   return dst;
 }
 
 uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length)
