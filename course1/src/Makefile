@@ -21,10 +21,11 @@
 #      <Put a description of the supported Overrides here
 #
 #------------------------------------------------------------------------------
-include sources.mk
+include ../sources.mk
 
 # Platform Overrides
 PLATFORM = MSP432
+CRSE = 
 
 TARGET = c1m4
 
@@ -33,7 +34,7 @@ CFLAGS = -Wall -Werror -g -O0 -std=c99
 DEPFLAGS := -M
 LDFLAGS := -Wl,-Map=$(TARGET).map
 
-CPPFLAGs := -D$(PLATFORM)
+CPPFLAGs := -D$(PLATFORM) -D$(CRSE)
 
 
 # Compiler Flags and Defines

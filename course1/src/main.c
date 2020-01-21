@@ -25,9 +25,9 @@
 
 int main(void) {
   
-//#ifdef COURSE1
+#ifdef COURSE1
   course1();
-//#endif
+#endif
   return 0;
 }
 
