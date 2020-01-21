@@ -67,35 +67,59 @@ uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length)
 
 uint8_t * my_memcopy(uint8_t * src, uint8_t * dst, size_t length)
 {
-     uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
-   return type;
+   //  uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
+   //return type;
+   for(int i=0;i<length;i++)
+     *(dst+i) = *(src+i);
+
+   return dst;
 }
 
 uint8_t * my_memset(uint8_t * src, size_t length, uint8_t value)
 {
-     uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
-   return type;
+   //  uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
+   //return type;
+   for(int i=0;i<length;i++)
+     *(src+i) = value;
+
+    return src;
 }
 
 uint8_t * my_memzero(uint8_t * src, size_t length)
 {
-     uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
-   return type;
+    uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
+  return type;
+
+    for(int i=0;i<length;i++)
+     *(src+i) = (uint8_t)0;
+
+    return src;
 }
 
 uint8_t * my_reverse(uint8_t * src, size_t length)
 {
-     uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
-   return type;
+  //   uint8_t* type =  (uint8_t*)calloc(1,sizeof(uint8_t));
+  // return type;
+     uint8_t tmp[length];
+   for(int i=0;i<length;i++)
+     *(tmp+i) = *(src+length-1-i);
+
+   for(int i=0;i<length;i++)
+     *(src+i) = *(tmp+i);
+
+   return src;
+  
 }
 
 int32_t * reserve_words(size_t length)
 {
-       int32_t* type = (int32_t*)calloc(1,sizeof(int32_t));
-   return type;
+  //      int32_t* type = (int32_t*)calloc(1,sizeof(int32_t));
+  //  return type;
+
+  return((int32_t*)malloc(length*sizeof(int32_t)));
 }
 
 void free_words(uint32_t * src)
 {
-
+    free(src);
 }
