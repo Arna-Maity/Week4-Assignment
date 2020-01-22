@@ -26,6 +26,7 @@ include ../sources.mk
 # Platform Overrides
 PLATFORM = MSP432
 CRSE = 
+VF = 
 
 TARGET = c1m4
 
@@ -34,34 +35,41 @@ CFLAGS = -Wall -Werror -g -O0 -std=c99
 DEPFLAGS := -M
 LDFLAGS := -Wl,-Map=$(TARGET).map
 
-CPPFLAGs := -D$(PLATFORM) -D$(CRSE) 
+CPPFLAGs := -D$(PLATFORM)
 
+ifeq ($(VF),VERBOSE)
+	CPPFLAGs := $(CPPFLAGs) -D$(VF)
+endif
+
+ifeq ($(CRSE),COURSE1)
+	CPPFLAGs := $(CPPFLAGs) -D$(CRSE)
+endif
 
 # Compiler Flags and Defines
-	ifeq ($(PLATFORM),MSP432)
-		# Architectures Specific Flags
-		LINKER_FILE := ../msp432p401r.lds
-		CPU := cortex-m4
-		ARCH := thumb
-		MARCH := armv7e-m 
-		SPECS := nosys.specs
-		FPU := -mfloat-abi=hard -mfpu=fpv4-sp-d16
+ifeq ($(PLATFORM),MSP432)
+	# Architectures Specific Flags
+	LINKER_FILE := ../msp432p401r.lds
+	CPU := cortex-m4
+	ARCH := thumb
+	MARCH := armv7e-m 
+	SPECS := nosys.specs
+	FPU := -mfloat-abi=hard -mfpu=fpv4-sp-d16
 
-		CC := /usr/bin/arm-none-eabi-gcc
-		LD := /usr/bin/arm-none-eabi-ld
-		SIZE := /usr/bin/arm-none-eabi-size
-		OBJDUMP:= /usr/bin/arm-none-eabi-objdump
-		LDFLAGS := $(LDFLAGS) -T $(LINKER_FILE)
-		CFLAGS := $(CFLAGS) -mcpu=$(CPU) -march=$(MARCH) -m$(ARCH)  --specs=$(SPECS) $(FPU)
-		SOURCES:= $(SOURCES) interrupts_msp432p401r_gcc.c startup_msp432p401r_gcc.c system_msp432p401r.c
-		INCLUDES := $(INCLUDES) -I../include/msp432/ -I../include/CMSIS/
+	CC := /usr/bin/arm-none-eabi-gcc
+	LD := /usr/bin/arm-none-eabi-ld
+	SIZE := /usr/bin/arm-none-eabi-size
+	OBJDUMP:= /usr/bin/arm-none-eabi-objdump
+	LDFLAGS := $(LDFLAGS) -T $(LINKER_FILE)
+	CFLAGS := $(CFLAGS) -mcpu=$(CPU) -march=$(MARCH) -m$(ARCH)  --specs=$(SPECS) $(FPU)
+	SOURCES:= $(SOURCES) interrupts_msp432p401r_gcc.c startup_msp432p401r_gcc.c system_msp432p401r.c
+	INCLUDES := $(INCLUDES) -I../include/msp432/ -I../include/CMSIS/
+else
+	CC := /usr/bin/gcc
+	LD := /usr/bin/ld
+	SIZE := /usr/bin/size
+	OBJDUMP := /usr/bin/objdump
+endif
 
-	else
-		CC := /usr/bin/gcc
-		LD := /usr/bin/ld
-		SIZE := /usr/bin/size
-		OBJDUMP := /usr/bin/objdump
-	endif
 
 OBJS = $(SOURCES:.c=.o)
 
