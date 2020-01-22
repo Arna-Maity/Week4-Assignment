@@ -34,7 +34,7 @@ CFLAGS = -Wall -Werror -g -O0 -std=c99
 DEPFLAGS := -M
 LDFLAGS := -Wl,-Map=$(TARGET).map
 
-CPPFLAGs := -D$(PLATFORM) -D$(CRSE)
+CPPFLAGs := -D$(PLATFORM) -D$(CRSE) 
 
 
 # Compiler Flags and Defines

@@ -1,10 +1,28 @@
 #include <stdint.h>
+#include <stdlib.h>
 #include "data.h"
 
 uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base)
  {
-     uint8_t type = 10;
-     return type;
+    //  uint8_t type = 10;
+    //  return type;
+        uint32_t num;
+     if(data < 0)
+        num = data + WINT_MAX;
+
+     else
+        num = data;
+
+    uint8_t j=0;
+    while(num != 0)
+    {
+        *(ptr+32-j) = num%base;
+        num /= base;
+        j++;
+    }
+    ptr = ptr + 33 - j;
+
+    return j;
     }
  /*   Integer-to-ASCII needs to convert data from a standard integer type into an ASCII string.
     All operations need to be performed using pointer arithmetic, not array indexing
@@ -18,10 +36,18 @@ uint8_t my_itoa(int32_t data, uint8_t * ptr, uint32_t base)
     You may not use any string functions or libraries */
    
 
-int32_t my_atoi(uint8_t * ptr, uint8_t digits, uint32_t base)
+int32_t my_atoi(uint8_t *ptr, uint8_t digits, uint32_t base)
 {
-  int32_t type = 11;
-   return type;
+  int32_t num=0;
+  
+  for(int i=0;i<digits;i++)
+    num = num * base + (*(ptr+i));
+    
+    if(num < 0)
+     num += 1;
+
+   return num;
+
     }
   /*  ASCII-to-Integer needs to convert data back from an ASCII represented string into an integer type.
     All operations need to be performed using pointer arithmetic, not array indexing

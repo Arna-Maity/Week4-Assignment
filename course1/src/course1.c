@@ -39,7 +39,11 @@ int8_t test_data1() {
     return TEST_ERROR;
   }
 
-  digits = my_itoa( num, ptr, BASE_16);   
+  digits = my_itoa( num, ptr, BASE_16); 
+  PRINTF("digits: %d\n",digits);
+  for(int i=0;i<digits;i++)
+    PRINTF("%d ",*(ptr+i));
+
   value = my_atoi( ptr, digits, BASE_16);
   #ifdef VERBOSE
   PRINTF("  Initial number: %d\n", num);
